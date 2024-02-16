@@ -10,6 +10,8 @@
 			<label>Precisions: </label>
 			<input type="text" required id = "dpt">
 		</div>
+		<button @click="removeLieu">ENLEVER LIEU</button>
+		<button @click="addLieu">AJOUTER LIEU</button>
 	</form>
 </template>
 

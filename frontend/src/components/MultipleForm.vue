@@ -1,5 +1,5 @@
 <template>
-	<form>
+	<form id ="Multiple">
 		<div>
 			<label>Departement: </label>
 			<input type="text" required id = "dpt">
@@ -8,18 +8,22 @@
 		</div>
 		<div>
 			<label>Precisions: </label>
-			<input type="text" required id = "dpt">
+			<input type="text" required>
 		</div>
 	</form>
 </template>
 
 <script>
 export default{
-
 }
 </script>
 
 <style>
+	#Multiple{
+		border-style: solid;
+		margin-left: 300px;
+		margin-right : 300px
+	}
 	div{
 		display: block;
 		padding: 10px 6px;
