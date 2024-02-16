@@ -1,3 +1,5 @@
+<!-- Element unique d'un formulaire -->
+
 <template>
 	<form id ="Multiple">
 		<div>
@@ -18,11 +20,14 @@ export default{
 }
 </script>
 
+<!-- CSS d'un element de formulaire -->
 <style>
 	#Multiple{
 		border-style: solid;
 		margin-left: 300px;
-		margin-right : 300px
+		margin-right : 300px;
+		margin-top: 25px;
+		margin-bottom: 25px;
 	}
 	div{
 		display: block;
