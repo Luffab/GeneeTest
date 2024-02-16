@@ -1,5 +1,4 @@
 <!-- Element unique d'un formulaire -->
-
 <template>
 	<form id ="Multiple" v-on:submit.prevent="saveForm">
 		<div>
@@ -19,22 +18,28 @@
 </template>
 
 <script>
+
 export default{
+	//components: {AutocompleteAffaire},
 	data() {
 		return {
 			tab: [{
 				dpt: null,
 				ville: null,
 				prec: null,
-			}]
+			}],
+			value: '',
+      items: []
 		}
 	},
 	methods: {
+		/* Envoyer le resultat du formulaire a App.vue */
 		saveForm() {
-			//const tab = [{dpt: this.dpt}, {ville: this.ville}, {prec: this.prec}]
-			//alert (this.tab)
 			this.$emit("child-event", this.tab)
 		},
+		search(event) {
+            this.items = [...Array(10).keys()].map((item) => event.query + '-' + item);
+        }
 	}
 }
 </script>

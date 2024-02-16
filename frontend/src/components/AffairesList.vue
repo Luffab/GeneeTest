@@ -8,7 +8,7 @@
 export default {
     data() {
 			return {
-				affaires: ['wqf', 'wdqf']
+				affaires: ['Affaire1', 'Affaire2']
 			};
 		},
 	}

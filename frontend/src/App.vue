@@ -71,29 +71,10 @@ export default {
 				this.lieuCount += 1;
 			},
 
-			/* Fonction pour ajouter l'affaire unique */
-			addInfoSolo(e) {
-				this.InfoSolo.push(e);
-			},
-
-			/* Fonction pour ajouter une affaire a la liste multiple */
-			addInfoMultiple(e) {
-				this.InfoMultiple.push(e)
-			},
-
-			/* Fonction pour ajouter une affaire a la liste multiple */
-			removeInfoMultiple(e) {
-				this.InfoMultiple.push(e)
-			},
 			/* Fonction pour enlever un lieu */
 			removeLieu() {
 				this.lieu.pop()
 				this.lieuCount -= 1
-			},
-
-			/* Save le nom de l'affaire */
-			saveName(name) {
-				this.name = name;
 			},
 
 			/* Envoyer au back l'affaire */
