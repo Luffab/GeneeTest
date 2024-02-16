@@ -79,7 +79,7 @@ export default {
 
 			/* Envoyer au back l'affaire */
 			sendAffaire() {
-				//alert(this.Infos.length);
+				let name = this.name;
 			},
 
 			handleChildEvent(payload) {
