@@ -44,6 +44,12 @@ import AppTitle from './components/AppTitle.vue'
 import MultipleForm from './components/MultipleForm.vue';
 import AffairesList from './components/AffairesList.vue';
 
+const requestOptions = {
+    method: 'POST',
+    headers: { 'Content-Type': 'application/json' },
+    body: JSON.stringify({ name: this.name }, {infos: this.Infos})
+	}
+
 export default {
   name: 'App',
   components: {AppTitle, MultipleForm, AffairesList },
@@ -79,7 +85,9 @@ export default {
 
 			/* Envoyer au back l'affaire */
 			sendAffaire() {
-				//alert(this.Infos.length);
+				fetch('localhost:4000/create_case', requestOptions)
+    		.then(response => response.json())
+    		.then(data => product.value = data);
 			},
 
 			handleChildEvent(payload) {
