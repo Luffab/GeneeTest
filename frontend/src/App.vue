@@ -11,30 +11,33 @@
 			>{{isActive ? 'MULTIPLE' : 'UNIQUE'}}</button>
 
 		<!-- Definir le nom de l'affaire -->
-		<label>Nom de l'affaire: </label>
-		<input type="text" required>
+		<form v-on:submit.prevent="sendAffaire(e)">
+			<label>Nom de l'affaire: </label>
+			<input type="text" name="name" required v-model="name">
 
-		<!-- Afficher un element form si unique -->
-		<MultipleForm v-if="isActive === false"/>
+			<!-- Afficher un element form si unique -->
+			<MultipleForm v-if="isActive === false" @child-event="handleChildEvent" />
 
-		<!-- Boucler sur plusieurs formes si multiple -->
-		<div v-if="isActive === true">
-			<ul>
-				<MultipleForm v-for="(formlieu, i) in lieu" :key="i" />
-			</ul>
+			<!-- Boucler sur plusieurs formes si multiple -->
+			<div v-if="isActive === true">
+				<ul>
+					<MultipleForm v-for="(formlieu, i) in lieu" :key="i" @child-event="handleChildEvent" />
+				</ul>
 
-			<!-- Ajouter un lieu -->
-			<button @click="addLieu()">AJOUTER LIEU</button>
+				<!-- Ajouter un lieu -->
+				<button @click="addLieu()">AJOUTER LIEU</button>
 
-			<!-- Enlever un lieu -->
-			<button v-if="lieuCount > 2" @click="removeLieu">ENLEVER LIEU</button>
-		</div>
+				<!-- Enlever un lieu -->
+				<button v-if="lieuCount > 2" @click="removeLieu">ENLEVER LIEU</button>
+			</div>
 
-		<!-- VALIDATION DE L'AFFAIRE -->
-		<button>VALIDER AFFAIRE</button>
+			<!-- VALIDATION DE L'AFFAIRE -->
+			<button>VALIDER AFFAIRE</button>
+		</form>
 		<AffairesList />
 	</div>
 </template>
+
 
 <script>
 import AppTitle from './components/AppTitle.vue'
@@ -49,7 +52,11 @@ export default {
 		return {
 			isActive: false,
 			lieu: [MultipleForm, MultipleForm],
-			lieuCount: 2
+			lieuCount: 2,
+			name: "",
+			Infos: [
+							{dpt: null, ville: null, prec: null}
+						]
 		};
 	},
 	methods: {
@@ -60,14 +67,42 @@ export default {
 
 			/* Fonction pour ajouter un lieu */
 			addLieu() {
-				this.lieu.push({component: MultipleForm});
+				this.lieu.push(MultipleForm);
 				this.lieuCount += 1;
 			},
 
+			/* Fonction pour ajouter l'affaire unique */
+			addInfoSolo(e) {
+				this.InfoSolo.push(e);
+			},
+
+			/* Fonction pour ajouter une affaire a la liste multiple */
+			addInfoMultiple(e) {
+				this.InfoMultiple.push(e)
+			},
+
+			/* Fonction pour ajouter une affaire a la liste multiple */
+			removeInfoMultiple(e) {
+				this.InfoMultiple.push(e)
+			},
 			/* Fonction pour enlever un lieu */
 			removeLieu() {
 				this.lieu.pop()
 				this.lieuCount -= 1
+			},
+
+			/* Save le nom de l'affaire */
+			saveName(name) {
+				this.name = name;
+			},
+
+			/* Envoyer au back l'affaire */
+			sendAffaire() {
+				//alert(this.Infos.length);
+			},
+
+			handleChildEvent(payload) {
+				this.Infos.push(payload)
 			}
 		}
 }

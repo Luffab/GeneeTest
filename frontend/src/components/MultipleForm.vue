@@ -1,22 +1,41 @@
 <!-- Element unique d'un formulaire -->
 
 <template>
-	<form id ="Multiple">
+	<form id ="Multiple" v-on:submit.prevent="saveForm">
 		<div>
 			<label>Departement: </label>
-			<input type="text" required id = "dpt">
+			<input type="text" required id = "dpt" v-model="tab.dpt">
 			<label>Commune: </label>
-			<input type="text" required>
+			<input type="text" required v-model="tab.ville">
 		</div>
 		<div>
 			<label>Precisions: </label>
-			<input type="text" required>
+			<input type="text" required v-model="tab.prec">
+		</div>
+		<div>
+			<button>Valider</button>
 		</div>
 	</form>
 </template>
 
 <script>
 export default{
+	data() {
+		return {
+			tab: [{
+				dpt: null,
+				ville: null,
+				prec: null,
+			}]
+		}
+	},
+	methods: {
+		saveForm() {
+			//const tab = [{dpt: this.dpt}, {ville: this.ville}, {prec: this.prec}]
+			//alert (this.tab)
+			this.$emit("child-event", this.tab)
+		},
+	}
 }
 </script>
 
